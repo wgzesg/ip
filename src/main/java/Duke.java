@@ -1,6 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+
+    public static ArrayList<Todo> todolist = new ArrayList<Todo>();
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -11,20 +16,38 @@ public class Duke {
 
         printSeperationLine();
         printGreetings();
-        //printBye();
         Scanner in = new Scanner(System.in);
         while(true){
             String command = in.nextLine();
             switch (command){
-//            case "list":
-//                break;
+            case "list":
+                listAll();
+                break;
             case "bye":
                 printBye();
                 break;
             default:
-                echo(command);
+                addToTodoList(command);
+                //echo(command);
             }
         }
+    }
+
+    static void listAll(){
+        printSeperationLine();
+        int i = 1;
+        for(Todo t: todolist){
+            System.out.println(i + ". " + t.taskName);
+            i++;
+        }
+        printSeperationLine();
+    }
+
+    static void addToTodoList(String task){
+        todolist.add(new Todo(task));
+        printSeperationLine();
+        System.out.println("added: " + task);
+        printSeperationLine();
     }
 
     static void echo(String input){
