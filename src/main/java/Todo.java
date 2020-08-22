@@ -10,4 +10,12 @@ public class Todo {
         taskName = task;
         isDone = false;
     }
+
+    public String printTask(){
+        return "[" + (isDone ? "\u2713" : "\u2718") + "] " + taskName;
+    }
+
+    public void markAsDone(){
+        isDone = true;
+    }
 }

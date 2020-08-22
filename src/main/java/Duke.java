@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.lang.Object;
 import java.util.Scanner;
 
 public class Duke {
@@ -19,35 +19,54 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         while(true){
             String command = in.nextLine();
-            switch (command){
-            case "list":
-                listAll();
-                break;
-            case "bye":
-                printBye();
-                break;
-            default:
-                addToTodoList(command);
-                //echo(command);
-            }
+
+            processCommand(command);
         }
     }
 
-    static void listAll(){
+    static void processCommand(String command){
         printSeperationLine();
-        int i = 1;
-        for(Todo t: todolist){
-            System.out.println(i + ". " + t.taskName);
-            i++;
+        String[] args = command.split(" ");
+        if(args[0].equals(("done"))){
+            try{
+                int index = Integer.parseInt(args[1]);
+                todolist.get(index - 1).markAsDone();
+                System.out.println("Nice! I've marked this task as done: ");
+                System.out.println(todolist.get(index - 1).printTask());
+            } catch(NumberFormatException e) {
+                System.out.println("The command is not recognised. Do you wish to add this as task? (y/n)");
+                Scanner in = new Scanner(System.in);
+                String response = in.next();
+                if (response.equals("yes") || response.equals("Yes") || response.equals("y")) {
+                    addToTodoList(command.trim());
+                } else {
+                    System.out.println("This action is aborted.");
+                }
+            } catch (IndexOutOfBoundsException e){
+                System.out.println("The index is out of range. This action is aborted.");
+            }
+        } else if (command.equals("list")){
+            listAll();
+        } else if(command.equals("bye")){
+            printBye();
+        } else{
+            addToTodoList(command.trim());
         }
         printSeperationLine();
+    }
+
+    static void listAll(){
+        int i = 1;
+        for(Todo t: todolist){
+
+            System.out.println(i + ". " + t.printTask());
+            i++;
+        }
     }
 
     static void addToTodoList(String task){
         todolist.add(new Todo(task));
-        printSeperationLine();
         System.out.println("added: " + task);
-        printSeperationLine();
     }
 
     static void echo(String input){
