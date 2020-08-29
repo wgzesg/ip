@@ -44,9 +44,9 @@ public class Duke {
         int result = 0;
         printSeperationLine();
 
-        String[] args = command.split(" ");
+
         try{
-            result = commandLib.execute(args[0], args);
+            result = commandLib.execute(command);
         } catch (IllegalStateException e){
             System.out.println("The command is not recognised");
         }
