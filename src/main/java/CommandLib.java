@@ -4,7 +4,7 @@ public class CommandLib {
     private final HashMap<String, Command> commandMap = new HashMap<>();
 
     public CommandLib(){
-        // Create all tasks and put them into the map
+        // Initialise the map with all possible commands
         MarkDone markDone = new MarkDone();
         this.register("done", markDone);
         AddTodo addTodo = new AddTodo();
@@ -42,7 +42,6 @@ public class CommandLib {
 }
 
 class MarkDone extends Command{
-
     @Override
     public int execute() {
         ActionLib.markDone(args);
@@ -51,7 +50,6 @@ class MarkDone extends Command{
 }
 
 class PrintBye extends Command{
-
     @Override
     public int execute() {
         ActionLib.printBye();
@@ -60,7 +58,6 @@ class PrintBye extends Command{
 }
 
 class ListAll extends Command{
-
     @Override
     public int execute() {
         ActionLib.listAll();
@@ -69,7 +66,6 @@ class ListAll extends Command{
 }
 
 class AddTodo extends Command{
-
     @Override
     public int execute() {
         ActionLib.addToDo(args);
@@ -78,7 +74,6 @@ class AddTodo extends Command{
 }
 
 class AddDeadline extends Command{
-
     @Override
     public int execute() {
         ActionLib.addDeadline(args);
@@ -87,7 +82,6 @@ class AddDeadline extends Command{
 }
 
 class AddEvent extends Command{
-
     @Override
     public int execute() {
         ActionLib.addEvent(args);

@@ -7,10 +7,9 @@ public class ActionLib {
         try{
             int index = Integer.parseInt(arg);
             todolist.get(index - 1).markAsDone();
-            System.out.println("Nice! I've marked this task as done: ");
-            System.out.println(todolist.get(index - 1));
+            markDoneResponse(index);
         } catch(NumberFormatException e) {
-            System.out.println("The command is not recognised. Do you wish to add this as task? (y/n)");
+            System.out.println("The command is not recognised.");
         } catch (IndexOutOfBoundsException e){
             System.out.println("The index is out of range. This action is aborted.");
         }
@@ -61,9 +60,14 @@ public class ActionLib {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+    private static void markDoneResponse(int index) {
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(todolist.get(index - 1));
+    }
+
     private static void addedToListResponse(Task task){
         System.out.print(
-                "Got it. I've added this task: \n" +
+                "Got it. I've added this task:\n" +
                 task +
                 "\nNow you have " + todolist.size() + " tasks in the list.\n"
         );

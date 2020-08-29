@@ -1,34 +1,24 @@
-import java.util.ArrayList;
-import java.lang.Object;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static CommandLib commandLib = new CommandLib();
-    //    public static ArrayList<Todo> todolist = new ArrayList<Todo>();
+    private static final CommandLib commandLib = new CommandLib();
     public static void main(String[] args) {
-
-
-
-        printLogo();
-        printSeperationLine();
-        printGreetings();
+        printOpening();
         Scanner in = new Scanner(System.in);
         while(true){
             String command = in.nextLine();
-            int result = 0;
-            try{
-                result = processCommand(command);
-            } catch (IllegalStateException e){
-                System.out.println("The command is not recognised");
-            }
-            printSeperationLine();
-
+            int result = processCommand(command);
             if(result == -1){
                 break;
             }
         }
+    }
 
+    private static void printOpening() {
+        printLogo();
+        printSeperationLine();
+        printGreetings();
     }
 
     private static void printLogo() {
@@ -41,17 +31,10 @@ public class Duke {
     }
 
     static int processCommand(String command){
-        int result = 0;
         printSeperationLine();
-
-
-        try{
-            result = commandLib.execute(command);
-        } catch (IllegalStateException e){
-            System.out.println("The command is not recognised");
-        }
+        int result = commandLib.execute(command);
+        printSeperationLine();
         return result;
-
     }
 
     static void echo(String input){
@@ -68,6 +51,4 @@ public class Duke {
     static void printSeperationLine(){
         System.out.println("------------------------------------------");
     }
-
-
 }

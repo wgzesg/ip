@@ -1,0 +1,8 @@
+todo read books
+list
+deadline milestone 1 video /by Friday
+event birthday party /at 31 Aug 4pm
+list
+done 2
+done 3
+list
