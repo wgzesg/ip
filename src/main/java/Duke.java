@@ -49,6 +49,6 @@ public class Duke {
     }
 
     static void printSeperationLine(){
-        System.out.println("------------------------------------------");
+        System.out.println(Constants.SEPLINE);
     }
 }

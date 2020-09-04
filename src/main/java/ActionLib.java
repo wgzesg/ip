@@ -31,7 +31,7 @@ public class ActionLib {
     }
 
     public static void addDeadline(String args){
-        String[] parts = args.split(" /by ");
+        String[] parts = args.split(Constants.BY_PARSER);
         Task ddl;
         try{
             ddl = new Deadline(parts[0], parts[1]);
@@ -44,7 +44,7 @@ public class ActionLib {
     }
 
     public static void addEvent(String args){
-        String[] parts = args.split(" /at ");
+        String[] parts = args.split(Constants.AT_PARSER);
         Task event;
         try{
             event = new Events(parts[0], parts[1]);

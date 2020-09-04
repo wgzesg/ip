@@ -6,17 +6,17 @@ public class CommandLib {
     public CommandLib(){
         // Initialise the map with all possible commands
         MarkDone markDone = new MarkDone();
-        this.register("done", markDone);
+        this.register(Constants.DONE_CMD, markDone);
         AddTodo addTodo = new AddTodo();
-        this.register("todo", addTodo);
+        this.register(Constants.TODO_CMD, addTodo);
         AddDeadline addDeadline = new AddDeadline();
-        this.register("deadline", addDeadline);
+        this.register(Constants.DEADLINE_CMD, addDeadline);
         AddEvent addEvent = new AddEvent();
-        this.register("event", addEvent);
+        this.register(Constants.EVENT_CMD, addEvent);
         ListAll listAll = new ListAll();
-        this.register("list", listAll);
+        this.register(Constants.LIST_CMD, listAll);
         PrintBye printBye = new PrintBye();
-        this.register("bye", printBye);
+        this.register(Constants.BYE_CMD, printBye);
     }
 
     public void register(String commandName, Command command) {
@@ -27,9 +27,6 @@ public class CommandLib {
 
         String[] args = cmd.split(" ", 2);
         Command command = commandMap.get(args[0]);
-        if (command == null) {
-            command = commandMap.get("add");
-        }
         if(command == null){
             System.out.println("Command is not recognised!");
             return 0;
@@ -38,6 +35,14 @@ public class CommandLib {
             command.args = args[1];
         }
         return command.execute();
+    }
+}
+
+abstract class Command{
+    public String args;
+
+    public int execute() {
+        return 0;
     }
 }
 
