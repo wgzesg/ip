@@ -49,7 +49,7 @@ abstract class Command{
 class MarkDone extends Command{
     @Override
     public int execute() {
-        ActionLib.markDone(args);
+        Database.markDone(args);
         return 0;
     }
 }
@@ -57,7 +57,7 @@ class MarkDone extends Command{
 class PrintBye extends Command{
     @Override
     public int execute() {
-        ActionLib.printBye();
+        Database.printBye();
         return -1;
     }
 }
@@ -65,7 +65,7 @@ class PrintBye extends Command{
 class ListAll extends Command{
     @Override
     public int execute() {
-        ActionLib.listAll();
+        Database.listAll();
         return 0;
     }
 }
@@ -73,7 +73,7 @@ class ListAll extends Command{
 class AddTodo extends Command{
     @Override
     public int execute() {
-        ActionLib.addToDo(args);
+        Database.addToDo(args);
         return 0;
     }
 }
@@ -81,7 +81,7 @@ class AddTodo extends Command{
 class AddDeadline extends Command{
     @Override
     public int execute() {
-        ActionLib.addDeadline(args);
+        Database.addDeadline(args);
         return 0;
     }
 }
@@ -89,7 +89,7 @@ class AddDeadline extends Command{
 class AddEvent extends Command{
     @Override
     public int execute() {
-        ActionLib.addEvent(args);
+        Database.addEvent(args);
         return 0;
     }
 }

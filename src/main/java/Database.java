@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class ActionLib {
-    public static ArrayList<Task> todolist = new ArrayList<>();
+public class Database {
+    public static ArrayList<Task> taskList = new ArrayList<>();
 
     public static void markDone(String arg) {
         try{
             int index = Integer.parseInt(arg);
-            todolist.get(index - 1).markAsDone();
+            taskList.get(index - 1).markAsDone();
             markDoneResponse(index);
         } catch(NumberFormatException e) {
             System.out.println("The command is not recognised.");
@@ -17,7 +17,7 @@ public class ActionLib {
 
     public static void listAll(){
         int i = 1;
-        for(Task task: todolist){
+        for(Task task: taskList){
 
             System.out.println(i + ". " + task);
             i++;
@@ -26,7 +26,7 @@ public class ActionLib {
 
     public static void addToDo(String args){
         Task todo = new ToDo(args);
-        todolist.add(todo);
+        taskList.add(todo);
         addedToListResponse(todo);
     }
 
@@ -39,7 +39,7 @@ public class ActionLib {
             System.out.println("Not provided sufficient arguments!");
             return;
         }
-        todolist.add(ddl);
+        taskList.add(ddl);
         addedToListResponse(ddl);
     }
 
@@ -52,7 +52,7 @@ public class ActionLib {
             System.out.println("Not provided sufficient arguments!");
             return;
         }
-        todolist.add(event);
+        taskList.add(event);
         addedToListResponse(event);
     }
 
@@ -62,14 +62,14 @@ public class ActionLib {
 
     private static void markDoneResponse(int index) {
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(todolist.get(index - 1));
+        System.out.println(taskList.get(index - 1));
     }
 
     private static void addedToListResponse(Task task){
         System.out.print(
                 "Got it. I've added this task:\n" +
                 task +
-                "\nNow you have " + todolist.size() + " tasks in the list.\n"
+                "\nNow you have " + taskList.size() + " tasks in the list.\n"
         );
     }
 }
