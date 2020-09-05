@@ -1,15 +1,18 @@
+package core;
+
 import java.util.Scanner;
 
 public class Duke {
 
     private static final CommandLib commandLib = new CommandLib();
+
     public static void main(String[] args) {
         printOpening();
         Scanner in = new Scanner(System.in);
-        while(true){
+        while (true) {
             String command = in.nextLine();
             int result = processCommand(command);
-            if(result == -1){
+            if (result == -1) {
                 break;
             }
         }
@@ -30,25 +33,25 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
     }
 
-    static int processCommand(String command){
+    static int processCommand(String command) {
         printSeperationLine();
         int result = commandLib.execute(command);
         printSeperationLine();
         return result;
     }
 
-    static void echo(String input){
+    static void echo(String input) {
         System.out.println(input);
         printSeperationLine();
     }
 
-    static void printGreetings(){
-        System.out.println("Hello! I'm Duke");
+    static void printGreetings() {
+        System.out.println("Hello! I'm core.Duke");
         System.out.println("What can I do for you?");
         printSeperationLine();
     }
 
-    static void printSeperationLine(){
+    static void printSeperationLine() {
         System.out.println(Constants.SEPLINE);
     }
 }
