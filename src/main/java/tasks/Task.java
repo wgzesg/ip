@@ -1,5 +1,7 @@
 package tasks;
 
+import core.Constants;
+
 public class Task {
     public String taskName;
     public boolean isDone;
@@ -15,7 +17,7 @@ public class Task {
 
     @Override
     public String toString(){
-        return "[" + (isDone ? "\u2713" : "\u2718") + "] " + taskName;
+        return "[" + (isDone ? Constants.TICK : Constants.CROSS) + "] " + taskName;
     }
 
     public void markAsDone(){

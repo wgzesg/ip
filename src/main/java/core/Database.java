@@ -1,5 +1,6 @@
 package core;
 
+import exceptions.NullArgumentException;
 import tasks.Deadline;
 import tasks.Events;
 import tasks.Task;
@@ -39,26 +40,26 @@ public class Database {
 
     public static void addDeadline(String args) {
         String[] parts = args.split(Constants.BY_PARSER);
-        Task ddl;
-        try {
-            ddl = new Deadline(parts[0], parts[1]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Not provided sufficient arguments!");
-            return;
+
+        if (parts.length <2 || parts[0].isBlank() || parts[1].isBlank()) {
+            throw new NullArgumentException("☹ OOPS!!! Not provided sufficient arguments to create an event.");
         }
+
+        Task ddl;
+        ddl = new Deadline(parts[0], parts[1]);
         taskList.add(ddl);
         addedToListResponse(ddl);
     }
 
     public static void addEvent(String args) {
         String[] parts = args.split(Constants.AT_PARSER);
-        Task event;
-        try {
-            event = new Events(parts[0], parts[1]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Not provided sufficient arguments!");
-            return;
+
+        if (parts.length <2 || parts[0].isBlank() || parts[1].isBlank()) {
+            throw new NullArgumentException("☹ OOPS!!! Event description and time cannot be empty.");
         }
+
+        Task event;
+        event = new Events(parts[0], parts[1]);
         taskList.add(event);
         addedToListResponse(event);
     }

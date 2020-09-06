@@ -12,4 +12,6 @@ public class Constants {
     public static final String AT_PARSER = " /at ";
 
     public static final String SEPLINE = "------------------------------------------";
+    public static final String TICK = "\u2713";
+    public static final String CROSS = "\u2718";
 }

@@ -1,7 +1,9 @@
 package core;
 
 import commands.*;
+import exceptions.NullArgumentException;
 
+import java.awt.desktop.SystemEventListener;
 import java.util.HashMap;
 
 public class CommandLib {
@@ -31,14 +33,26 @@ public class CommandLib {
 
         String[] args = cmd.split(" ", 2);
         Command command = commandMap.get(args[0]);
-        if (command == null) {
-            System.out.println("commands.Command is not recognised!");
-            return 0;
-        }
-        if (args.length > 1) {
+
+        // Catch unrecognised command and
+        try {
             command.args = args[1];
+            System.out.println(command.args);
+        } catch (NullPointerException e) {
+            System.out.println("Oops, the command is not recognised!");
+            return 0;
+        } catch (ArrayIndexOutOfBoundsException e) {}
+
+        int result = 0;
+        try {
+            result = command.execute();
+        } catch (NullArgumentException e){
+            System.out.println(e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println("Oops, the command is not recognised!");
         }
-        return command.execute();
+
+        return result;
     }
 }
 
