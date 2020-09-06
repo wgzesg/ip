@@ -1,8 +1,19 @@
 todo read books
+todo another thing
+todo
 list
+deadline     /at
+deadline  /at randomTime
+deadline randomDes /at
 deadline milestone 1 video /by Friday
+list
+event     /at
+event  /at randomTime
+event randomDes /at
 event birthday party /at 31 Aug 4pm
 list
 done 2
-done 3
+done abc
+done 15
 list
+bye
