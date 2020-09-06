@@ -1,12 +1,13 @@
-package commands;
+package duke.commands;
 
 
-import core.Database;
+import duke.core.Database;
 
 public class AddDeadline extends Command {
     @Override
     public int execute() {
         Database.addDeadline(args);
+        clearArgs();
         return 0;
     }
 }

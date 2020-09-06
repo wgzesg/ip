@@ -1,4 +1,4 @@
-package core;
+package duke.core;
 
 public class Constants {
     public static final String DONE_CMD = "done";

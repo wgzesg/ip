@@ -1,10 +1,10 @@
-package core;
+package duke.core;
 
-import exceptions.NullArgumentException;
-import tasks.Deadline;
-import tasks.Events;
-import tasks.Task;
-import tasks.ToDo;
+import duke.exceptions.NullArgumentException;
+import duke.tasks.Deadline;
+import duke.tasks.Events;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
 
 import java.util.ArrayList;
 
@@ -17,9 +17,9 @@ public class Database {
             taskList.get(index - 1).markAsDone();
             markDoneResponse(index);
         } catch (NumberFormatException e) {
-            System.out.println("The command is not recognised.");
+            System.out.println("The index given is not a number.");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("The index is out of range. This action is aborted.");
+            System.out.println("The index is out of range. You don't have a task at that number.");
         }
     }
 
@@ -33,6 +33,9 @@ public class Database {
     }
 
     public static void addToDo(String args) {
+        if(args == null || args.isBlank() || args.isEmpty()){
+            throw new NullArgumentException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
         Task todo = new ToDo(args);
         taskList.add(todo);
         addedToListResponse(todo);
@@ -42,7 +45,7 @@ public class Database {
         String[] parts = args.split(Constants.BY_PARSER);
 
         if (parts.length <2 || parts[0].isBlank() || parts[1].isBlank()) {
-            throw new NullArgumentException("☹ OOPS!!! Not provided sufficient arguments to create an event.");
+            throw new NullArgumentException("☹ OOPS!!! Not provided sufficient arguments to create an deadline.");
         }
 
         Task ddl;
@@ -54,8 +57,8 @@ public class Database {
     public static void addEvent(String args) {
         String[] parts = args.split(Constants.AT_PARSER);
 
-        if (parts.length <2 || parts[0].isBlank() || parts[1].isBlank()) {
-            throw new NullArgumentException("☹ OOPS!!! Event description and time cannot be empty.");
+        if (parts.length < 2 || parts[0].isBlank() || parts[1].isBlank()) {
+            throw new NullArgumentException("☹ OOPS!!! Not provided sufficient arguments to create an event.");
         }
 
         Task event;

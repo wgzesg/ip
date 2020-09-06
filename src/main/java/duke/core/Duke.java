@@ -1,4 +1,4 @@
-package core;
+package duke.core;
 
 import java.util.Scanner;
 
@@ -46,7 +46,7 @@ public class Duke {
     }
 
     static void printGreetings() {
-        System.out.println("Hello! I'm core.Duke");
+        System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         printSeperationLine();
     }

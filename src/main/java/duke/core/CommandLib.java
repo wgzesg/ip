@@ -1,16 +1,15 @@
-package core;
+package duke.core;
 
-import commands.*;
-import exceptions.NullArgumentException;
+import duke.commands.*;
+import duke.exceptions.NullArgumentException;
 
-import java.awt.desktop.SystemEventListener;
 import java.util.HashMap;
 
 public class CommandLib {
     private final HashMap<String, Command> commandMap = new HashMap<>();
 
     public CommandLib() {
-        // Initialise the map with all possible commands
+        // Initialise the map with all possible duke.commands
         MarkDone markDone = new MarkDone();
         this.register(Constants.DONE_CMD, markDone);
         AddTodo addTodo = new AddTodo();
@@ -37,7 +36,6 @@ public class CommandLib {
         // Catch unrecognised command and
         try {
             command.args = args[1];
-            System.out.println(command.args);
         } catch (NullPointerException e) {
             System.out.println("Oops, the command is not recognised!");
             return 0;

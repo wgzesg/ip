@@ -1,6 +1,4 @@
-package exceptions;
-
-import commands.Command;
+package duke.exceptions;
 
 public class NullArgumentException extends RuntimeException {
 

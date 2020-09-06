@@ -1,6 +1,6 @@
-package tasks;
+package duke.tasks;
 
-import core.Constants;
+import duke.core.Constants;
 
 public class Task {
     public String taskName;

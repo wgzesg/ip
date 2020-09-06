@@ -1,11 +1,12 @@
-package commands;
+package duke.commands;
 
-import core.Database;
+import duke.core.Database;
 
 public class AddEvent extends Command {
     @Override
     public int execute() {
         Database.addEvent(args);
+        clearArgs();
         return 0;
     }
 }
