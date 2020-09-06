@@ -44,7 +44,7 @@ public class CommandLib {
         int result = 0;
         try {
             result = command.execute();
-        } catch (NullArgumentException e){
+        } catch (NullArgumentException e) {
             System.out.println(e.getMessage());
         } catch (NullPointerException e) {
             System.out.println("Oops, the command is not recognised!");

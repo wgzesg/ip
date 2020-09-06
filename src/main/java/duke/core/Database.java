@@ -33,7 +33,7 @@ public class Database {
     }
 
     public static void addToDo(String args) {
-        if(args == null || args.isBlank() || args.isEmpty()){
+        if (args == null || args.isBlank() || args.isEmpty()) {
             throw new NullArgumentException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
         Task todo = new ToDo(args);
@@ -44,8 +44,9 @@ public class Database {
     public static void addDeadline(String args) {
         String[] parts = args.split(Constants.BY_PARSER);
 
-        if (parts.length <2 || parts[0].isBlank() || parts[1].isBlank()) {
-            throw new NullArgumentException("☹ OOPS!!! Not provided sufficient arguments to create an deadline.");
+        if (parts.length < 2 || parts[0].isBlank() || parts[1].isBlank()) {
+            throw new NullArgumentException(
+                    "☹ OOPS!!! Not provided sufficient arguments to create an deadline.");
         }
 
         Task ddl;
@@ -58,7 +59,8 @@ public class Database {
         String[] parts = args.split(Constants.AT_PARSER);
 
         if (parts.length < 2 || parts[0].isBlank() || parts[1].isBlank()) {
-            throw new NullArgumentException("☹ OOPS!!! Not provided sufficient arguments to create an event.");
+            throw new NullArgumentException(
+                    "☹ OOPS!!! Not provided sufficient arguments to create an event.");
         }
 
         Task event;

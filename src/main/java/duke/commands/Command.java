@@ -6,6 +6,7 @@ abstract public class Command {
     public int execute() {
         return 0;
     }
+
     public void clearArgs() {
         args = null;
     }
