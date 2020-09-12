@@ -69,10 +69,36 @@ public class Database {
         addedToListResponse(event);
     }
 
+    public static void delete(String args) {
+        int index;
+        try {
+            index = Integer.parseInt(args);
+        } catch (NumberFormatException e){
+            System.out.println("Your input is not an integer!");
+            return;
+        }
+        try {
+            Task ts = taskList.get(index - 1);
+            taskList.remove(index - 1);
+            deleteResponse(ts);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("You do not have such a task yet");
+        }
+    }
+
     public static void printBye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+
+    public static void deleteResponse(Task task) {
+        System.out.print(
+                "Got it. I've removed this task:\n" +
+                task +
+                "\nNow you have " + taskList.size() + " tasks in the list.\n"
+        );
+
+    }
     private static void markDoneResponse(int index) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskList.get(index - 1));
