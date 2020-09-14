@@ -1,0 +1,19 @@
+[
+  {
+    "type": "Todo",
+    "taskName": "this",
+    "isDone": false
+  },
+  {
+    "by": "ss",
+    "type": "Deadline",
+    "taskName": "new",
+    "isDone": false
+  },
+  {
+    "at": "sss",
+    "type": "Events",
+    "taskName": "aa",
+    "isDone": false
+  }
+]

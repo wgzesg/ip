@@ -2,13 +2,12 @@ package duke.commands;
 
 import duke.storage.Database;
 
-public class PrintBye extends Command {
+public class Delete extends Command{
+
     @Override
     public int execute() {
-
-        Database.handleBye();
-
+        Database.delete(args);
         clearArgs();
-        return -1;
+        return 0;
     }
 }

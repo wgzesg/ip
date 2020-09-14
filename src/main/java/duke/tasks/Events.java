@@ -6,6 +6,12 @@ public class Events extends Task {
     public Events(String description, String at) {
         super(description);
         this.at = at;
+        type = "Events";
+    }
+
+    public Events(String description, String by, boolean isDone) {
+        this(description, by);
+        this.isDone = isDone;
     }
 
     @Override

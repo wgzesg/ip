@@ -1,7 +1,6 @@
 package duke.commands;
 
-import duke.core.Database;
-import duke.exceptions.NullArgumentException;
+import duke.storage.Database;
 
 public class AddTodo extends Command {
     @Override
