@@ -22,6 +22,9 @@ public class CommandLib {
         this.register(Constants.LIST_CMD, listAll);
         PrintBye printBye = new PrintBye();
         this.register(Constants.BYE_CMD, printBye);
+        Delete delete = new Delete();
+        this.register(Constants.DELETE_CMD, delete);
+
     }
 
     public void register(String commandName, Command command) {
