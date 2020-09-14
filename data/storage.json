@@ -1,10 +1,5 @@
 [
   {
-    "type": "Todo",
-    "taskName": "this",
-    "isDone": false
-  },
-  {
     "by": "ss",
     "type": "Deadline",
     "taskName": "new",
