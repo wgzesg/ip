@@ -22,8 +22,7 @@ public class Task {
         return "[" + (isDone ? Constants.TICK : Constants.CROSS) + "] " + taskName;
     }
 
-    public void markAsDone()
-    {
+    public void markAsDone() {
         isDone = true;
     }
 }

@@ -140,6 +140,10 @@ public class Database {
         }
     }
 
+    public static void printBye() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
 
     public static void deleteResponse(Task task) {
         System.out.print(
