@@ -1,5 +1,8 @@
 package duke.core;
 
+import duke.storage.Database;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,8 +10,14 @@ public class Duke {
     private static final CommandLib commandLib = new CommandLib();
 
     public static void main(String[] args) {
+        try {
+            Database.initialise();
+        } catch (IOException e) {
+            System.out.println("We cannot create a file for local storage. You may not be able to save your changes.");
+        }
         printOpening();
         Scanner in = new Scanner(System.in);
+
         while (true) {
             String command = in.nextLine();
             int result = processCommand(command);
@@ -16,11 +25,17 @@ public class Duke {
                 break;
             }
         }
+        try {
+            Database.writeToStorage();
+        } catch (IOException e) {
+            System.out.println("The changes cannot be saved. YOur progress will be lost.");
+        }
+        in.close();
     }
 
     private static void printOpening() {
         printLogo();
-        printSeperationLine();
+        printSeparationLine();
         printGreetings();
     }
 
@@ -34,24 +49,19 @@ public class Duke {
     }
 
     static int processCommand(String command) {
-        printSeperationLine();
+        printSeparationLine();
         int result = commandLib.execute(command);
-        printSeperationLine();
+        printSeparationLine();
         return result;
-    }
-
-    static void echo(String input) {
-        System.out.println(input);
-        printSeperationLine();
     }
 
     static void printGreetings() {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-        printSeperationLine();
+        printSeparationLine();
     }
 
-    static void printSeperationLine() {
+    static void printSeparationLine() {
         System.out.println(Constants.SEPLINE);
     }
 }

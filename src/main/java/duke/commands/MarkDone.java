@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.core.Database;
+import duke.storage.Database;
 
 public class MarkDone extends Command {
     @Override

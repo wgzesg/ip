@@ -6,6 +6,12 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+        type = "Deadline";
+    }
+
+    public Deadline(String description, String by, boolean isDone) {
+        this(description, by);
+        this.isDone = isDone;
     }
 
     @Override

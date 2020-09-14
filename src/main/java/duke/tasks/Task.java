@@ -3,6 +3,7 @@ package duke.tasks;
 import duke.core.Constants;
 
 public class Task {
+    public String type;
     public String taskName;
     public boolean isDone;
 
