@@ -13,7 +13,6 @@ import duke.tasks.ToDo;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 
 public class Database {
@@ -32,6 +31,8 @@ public class Database {
             readFileContents();
         } catch (FileNotFoundException e) {
             System.out.println("The file is not found");
+            File dir = new File("data/");
+            dir.mkdir();
             File yourFile = new File(Constants.FILEPATH);
             yourFile.createNewFile();
         }
@@ -52,6 +53,8 @@ public class Database {
         try {
             writer = new FileWriter("data/storage.json");
         } catch (IOException e) {
+            File dir = new File("data/");
+            dir.mkdir();
             File yourFile = new File(Constants.FILEPATH);
             yourFile.createNewFile();
             writer = new FileWriter("data/storage.json");
@@ -140,19 +143,14 @@ public class Database {
         }
     }
 
-    public static void printBye() {
-        System.out.println("Bye. Hope to see you again soon!");
-    }
-
-
     public static void deleteResponse(Task task) {
         System.out.print(
                 "Got it. I've removed this task:\n" +
                 task +
                 "\nNow you have " + taskList.size() + " tasks in the list.\n"
         );
-
     }
+
     private static void markDoneResponse(int index) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskList.get(index - 1));

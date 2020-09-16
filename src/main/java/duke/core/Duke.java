@@ -28,7 +28,8 @@ public class Duke {
         try {
             Database.writeToStorage();
         } catch (IOException e) {
-            System.out.println("The changes cannot be saved. YOur progress will be lost.");
+            e.printStackTrace();
+            System.out.println("The changes cannot be saved. Your progress will be lost.");
         }
         in.close();
     }
