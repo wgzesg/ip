@@ -1,11 +1,5 @@
 [
   {
-    "by": "ss",
-    "type": "Deadline",
-    "taskName": "new",
-    "isDone": false
-  },
-  {
     "at": "sss",
     "type": "Events",
     "taskName": "aa",

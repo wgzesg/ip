@@ -11,9 +11,16 @@ import duke.tasks.Events;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import static duke.core.Constants.FILEPATH;
 
 public class Database {
     private static ArrayList<Task> taskList = new ArrayList<>();
@@ -31,10 +38,7 @@ public class Database {
             readFileContents();
         } catch (FileNotFoundException e) {
             System.out.println("The file is not found");
-            File dir = new File("data/");
-            dir.mkdir();
-            File yourFile = new File(Constants.FILEPATH);
-            yourFile.createNewFile();
+            fileNotFoundHandler();
         }
         System.out.println("Loading completed.");
     }
@@ -42,7 +46,7 @@ public class Database {
     private static void readFileContents() throws FileNotFoundException {
         Type taskListType = new TypeToken<ArrayList<Task>>(){}.getType();
 
-        JsonReader reader = new JsonReader(new FileReader(Constants.FILEPATH));
+        JsonReader reader = new JsonReader(new FileReader(FILEPATH));
 
         taskList = gson.fromJson(reader, taskListType);
     }
@@ -51,24 +55,29 @@ public class Database {
         System.out.println("Saving your changes...");
         FileWriter writer;
         try {
-            writer = new FileWriter("data/storage.json");
+            writer = new FileWriter(FILEPATH);
         } catch (IOException e) {
-            File dir = new File("data/");
-            dir.mkdir();
-            File yourFile = new File(Constants.FILEPATH);
-            yourFile.createNewFile();
-            writer = new FileWriter("data/storage.json");
+            fileNotFoundHandler();
+            writer = new FileWriter(FILEPATH);
         }
         gson.toJson(taskList, writer);
-        writer.flush(); //flush data to file   <---
+        writer.flush();
         writer.close();
         System.out.println("All changes are saved!");
     }
 
+    private static void fileNotFoundHandler() throws IOException {
+        File dir = new File("data/");
+        dir.mkdir();
+        File yourFile = new File(FILEPATH);
+        yourFile.createNewFile();
+    }
+
     public static void markDone(String arg) {
+        int offset = 1;
         try {
             int index = Integer.parseInt(arg);
-            taskList.get(index - 1).markAsDone();
+            taskList.get(index - offset).markAsDone();
             markDoneResponse(index);
         } catch (NumberFormatException e) {
             System.out.println("The index given is not a number.");
@@ -78,11 +87,11 @@ public class Database {
     }
 
     public static void listAll() {
-        int i = 1;
+        int index = 1;
         for (Task task: taskList) {
 
-            System.out.println(i + ". " + task);
-            i++;
+            System.out.println(index + ". " + task);
+            index++;
         }
     }
 
@@ -97,27 +106,27 @@ public class Database {
     }
 
     public static void addDeadline(String args) {
-        String[] parts = args.split(Constants.BY_PARSER);
+        String[] argumentParts = args.split(Constants.BY_PARSER);
 
-        if (parts.length < 2 || parts[0].isBlank() || parts[1].isBlank()) {
+        if (argumentParts.length < 2 || argumentParts[Constants.DESCRIPTION].isBlank() || argumentParts[Constants.TIME].isBlank()) {
             throw new NullArgumentException(
                     "☹ OOPS!!! Not provided sufficient arguments to create an deadline.");
         }
 
-        Task ddl = new Deadline(parts[0], parts[1]);
+        Task ddl = new Deadline(argumentParts[Constants.DESCRIPTION], argumentParts[Constants.TIME]);
         taskList.add(ddl);
         addedToListResponse(ddl);
     }
 
     public static void addEvent(String args) {
-        String[] parts = args.split(Constants.AT_PARSER);
+        String[] argumentParts = args.split(Constants.AT_PARSER);
 
-        if (parts.length < 2 || parts[0].isBlank() || parts[1].isBlank()) {
+        if (argumentParts.length < 2 || argumentParts[Constants.DESCRIPTION].isBlank() || argumentParts[Constants.TIME].isBlank()) {
             throw new NullArgumentException(
                     "☹ OOPS!!! Not provided sufficient arguments to create an event.");
         }
 
-        Task event = new Events(parts[0], parts[1]);
+        Task event = new Events(argumentParts[Constants.DESCRIPTION], argumentParts[Constants.TIME]);
         taskList.add(event);
         addedToListResponse(event);
     }

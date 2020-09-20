@@ -35,7 +35,6 @@ public class CommandLib {
         String[] args = cmd.split(" ", 2);
         Command command = commandMap.get(args[0]);
 
-        // Catch unrecognised command and
         try {
             command.args = args[1];
         } catch (NullPointerException e) {

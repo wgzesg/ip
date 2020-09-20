@@ -21,17 +21,22 @@ public class Duke {
         while (true) {
             String command = in.nextLine();
             int result = processCommand(command);
+            writeToStorage();
             if (result == -1) {
                 break;
             }
         }
+        writeToStorage();
+        in.close();
+    }
+
+    private static void writeToStorage() {
         try {
             Database.writeToStorage();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("The changes cannot be saved. Your progress will be lost.");
         }
-        in.close();
     }
 
     private static void printOpening() {
@@ -41,12 +46,7 @@ public class Duke {
     }
 
     private static void printLogo() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n" + Constants.LOGO);
     }
 
     static int processCommand(String command) {

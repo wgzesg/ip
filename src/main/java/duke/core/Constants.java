@@ -16,4 +16,13 @@ public class Constants {
     public static final String TICK = "\u2713";
     public static final String CROSS = "\u2718";
     public static final String FILEPATH = "data/storage.json";
+
+    public static final String LOGO = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
+
+    public static final int DESCRIPTION = 0;
+    public static final int TIME = 1;
 }
