@@ -8,6 +8,9 @@ import java.util.HashMap;
 public class CommandLib {
     private final HashMap<String, Command> commandMap = new HashMap<>();
 
+    /**
+     * On initialisation, the CommandLib is initilised with all possible commands
+     */
     public CommandLib() {
         // Initialise the map with all possible duke.commands
         MarkDone markDone = new MarkDone();
@@ -34,6 +37,11 @@ public class CommandLib {
         commandMap.put(commandName, command);
     }
 
+    /**
+     * Execute the command by parsing the command from the arguments
+     * @param cmd The user input
+     * @return 0 if program continues; -1 if program terminates(e.g. Bye command)
+     */
     public int execute(String cmd) {
 
         String[] args = cmd.split(" ", 2);

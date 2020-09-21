@@ -1,6 +1,6 @@
 package duke.tasks;
 
-import duke.Parser.DateParser;
+import duke.parser.DateParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -13,10 +13,7 @@ public class Deadline extends Task {
         super(description);
         this.by = by;
         type = "Deadline";
-        try {
-            time = DateParser.parseDate(by);
-        } catch (DateTimeParseException e) {
-        }
+        time = DateParser.parseDate(by);
     }
 
     public Deadline(String description, String by, boolean isDone) {

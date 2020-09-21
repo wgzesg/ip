@@ -1,6 +1,6 @@
 package duke.tasks;
 
-import duke.Parser.DateParser;
+import duke.parser.DateParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -13,10 +13,7 @@ public class Event extends Task {
         super(description);
         this.at = at;
         type = "Event";
-        try {
-            time = DateParser.parseDate(at);
-        } catch (DateTimeParseException e) {
-        }
+        time = DateParser.parseDate(at);
     }
 
     public Event(String description, String by, boolean isDone) {

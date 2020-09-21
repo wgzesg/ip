@@ -55,20 +55,20 @@ public class Duke {
         System.out.println("Hello from\n" + Constants.LOGO);
     }
 
-    static int processCommand(String command) {
+    private static int processCommand(String command) {
         printSeparationLine();
         int result = commandLib.execute(command);
         printSeparationLine();
         return result;
     }
 
-    static void printGreetings() {
+    private static void printGreetings() {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         printSeparationLine();
     }
 
-    static void printSeparationLine() {
+    private static void printSeparationLine() {
         System.out.println(Constants.SEPLINE);
     }
 }
