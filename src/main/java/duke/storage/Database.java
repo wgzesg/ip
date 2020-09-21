@@ -22,6 +22,8 @@ import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static duke.core.Constants.FILEPATH;
 
@@ -82,12 +84,7 @@ public class Database {
     }
 
     public static void listAll() {
-        int index = 1;
-        for (Task task: taskList) {
-
-            System.out.println(index + ". " + task);
-            index++;
-        }
+        printTaskList(taskList);
     }
 
     public static void addToDo(String args) {
@@ -128,21 +125,34 @@ public class Database {
 
     public static void doneBy(String args) {
         LocalDateTime date= DateParser.parseDate(args);
+        List<Task> newList;
         try {
-            taskList.stream()
-                    .filter(t -> (t instanceof Deadline && ((Deadline) t).time != null && ((Deadline) t).time.isBefore(date))
+            newList = taskList.stream()
+                        .filter(t -> (t instanceof Deadline && ((Deadline) t).time != null && ((Deadline) t).time.isBefore(date))
                             || (t instanceof Event && ((Event) t).time != null && ((Event) t).time.isBefore(date)))
-                    .findAny()
-                    .ifPresent(System.out::println);
+                        .sorted((Task t1, Task t2) -> t1.taskName.compareTo(t2.taskName))
+                        .collect(Collectors.toList());
+            printTaskList(newList);
         } catch (NullPointerException e) {
         }
     }
 
     public static void find(String args) {
-        taskList.stream()
-                .filter(t -> t.taskName.contains(args))
-                .findAny()
-                .ifPresent(System.out::println);
+        List<Task> newList;
+        newList = taskList.stream()
+                    .filter(t -> t.taskName.contains(args))
+                    .sorted((Task t1, Task t2) -> t1.taskName.compareTo(t2.taskName))
+                    .collect(Collectors.toList());
+        printTaskList(newList);
+
+    }
+
+    private static void printTaskList(List<Task> newList) {
+        int index = 1;
+        for (Task t : newList) {
+            System.out.println(index + ". " + t);
+            index++;
+        }
     }
 
     public static void handleBye() {
