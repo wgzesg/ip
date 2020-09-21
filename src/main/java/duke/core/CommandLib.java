@@ -24,6 +24,10 @@ public class CommandLib {
         this.register(Constants.BYE_CMD, printBye);
         Delete delete = new Delete();
         this.register(Constants.DELETE_CMD, delete);
+        Find find = new Find();
+        this.register(Constants.FIND_CMD , find);
+        DoneBy doneBy = new DoneBy();
+        this.register(Constants.DONEBY_CMD , doneBy);
     }
 
     public void register(String commandName, Command command) {

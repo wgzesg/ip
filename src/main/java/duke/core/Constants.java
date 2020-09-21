@@ -8,6 +8,8 @@ public class Constants {
     public static final String LIST_CMD = "list";
     public static final String BYE_CMD = "bye";
     public static final String DELETE_CMD = "delete";
+    public static final String FIND_CMD = "find";
+    public static final String DONEBY_CMD = "doneby";
 
     public static final String BY_PARSER = " /by ";
     public static final String AT_PARSER = " /at ";

@@ -5,27 +5,27 @@ import duke.Parser.DateParser;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-public class Deadline extends Task {
-    protected String by;
+public class Event extends Task {
+    protected String at;
     public LocalDateTime time;
 
-    public Deadline(String description, String by) {
+    public Event(String description, String at) {
         super(description);
-        this.by = by;
-        type = "Deadline";
+        this.at = at;
+        type = "Event";
         try {
-            time = DateParser.parseDate(by);
+            time = DateParser.parseDate(at);
         } catch (DateTimeParseException e) {
         }
     }
 
-    public Deadline(String description, String by, boolean isDone) {
+    public Event(String description, String by, boolean isDone) {
         this(description, by);
         this.isDone = isDone;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[E]" + super.toString() + " (at: " + at + ")";
     }
 }

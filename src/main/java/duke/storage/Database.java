@@ -4,13 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import duke.Parser.DateParser;
 import duke.core.Constants;
 import duke.exceptions.NullArgumentException;
 import duke.tasks.Deadline;
-import duke.tasks.Events;
+import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
+import java.awt.desktop.SystemEventListener;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -18,6 +20,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static duke.core.Constants.FILEPATH;
@@ -31,7 +34,7 @@ public class Database {
         RuntimeTypeAdapterFactory<Task> taskAdapterFactory = RuntimeTypeAdapterFactory.of(Task.class, "type", true)
                 .registerSubtype(ToDo.class, "Todo")
                 .registerSubtype(Deadline.class, "Deadline")
-                .registerSubtype(Events.class, "Events");
+                .registerSubtype(Event.class, "Event");
         gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(taskAdapterFactory).create();
 
         try {
@@ -52,7 +55,6 @@ public class Database {
     }
 
     public static void writeToStorage() throws IOException {
-        System.out.println("Saving your changes...");
         FileWriter writer;
         try {
             writer = new FileWriter(FILEPATH);
@@ -63,7 +65,6 @@ public class Database {
         gson.toJson(taskList, writer);
         writer.flush();
         writer.close();
-        System.out.println("All changes are saved!");
     }
 
     private static void fileNotFoundHandler() throws IOException {
@@ -75,15 +76,9 @@ public class Database {
 
     public static void markDone(String arg) {
         int offset = 1;
-        try {
-            int index = Integer.parseInt(arg);
-            taskList.get(index - offset).markAsDone();
-            markDoneResponse(index);
-        } catch (NumberFormatException e) {
-            System.out.println("The index given is not a number.");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("The index is out of range. You don't have a task at that number.");
-        }
+        int index = Integer.parseInt(arg);
+        taskList.get(index - offset).markAsDone();
+        markDoneResponse(index);
     }
 
     public static void listAll() {
@@ -126,14 +121,34 @@ public class Database {
                     "☹ OOPS!!! Not provided sufficient arguments to create an event.");
         }
 
-        Task event = new Events(argumentParts[Constants.DESCRIPTION], argumentParts[Constants.TIME]);
+        Task event = new Event(argumentParts[Constants.DESCRIPTION], argumentParts[Constants.TIME]);
         taskList.add(event);
         addedToListResponse(event);
+    }
+
+    public static void doneBy(String args) {
+        LocalDateTime date= DateParser.parseDate(args);
+        try {
+            taskList.stream()
+                    .filter(t -> (t instanceof Deadline && ((Deadline) t).time != null && ((Deadline) t).time.isBefore(date))
+                            || (t instanceof Event && ((Event) t).time != null && ((Event) t).time.isBefore(date)))
+                    .findAny()
+                    .ifPresent(System.out::println);
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public static void find(String args) {
+        taskList.stream()
+                .filter(t -> t.taskName.contains(args))
+                .findAny()
+                .ifPresent(System.out::println);
     }
 
     public static void handleBye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
+
 
     public static void delete(String args) {
         int index;

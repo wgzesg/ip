@@ -2,14 +2,17 @@ package duke.core;
 
 import duke.storage.Database;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import static duke.core.Constants.FILEPATH;
 
 public class Duke {
 
     private static final CommandLib commandLib = new CommandLib();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try {
             Database.initialise();
         } catch (IOException e) {
@@ -21,18 +24,21 @@ public class Duke {
         while (true) {
             String command = in.nextLine();
             int result = processCommand(command);
-            writeToStorage();
+            Database.writeToStorage();
             if (result == -1) {
                 break;
             }
         }
+
         writeToStorage();
         in.close();
     }
 
     private static void writeToStorage() {
+        System.out.println("Saving your changes...");
         try {
             Database.writeToStorage();
+            System.out.println("All changes are saved!");
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("The changes cannot be saved. Your progress will be lost.");
