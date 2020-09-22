@@ -218,17 +218,17 @@ Bye. Hope to see you again soon!
 ```
 
 ## 4. Command Summary
-Command | Description
------------- | -------------
-todo | ```todo <todo description>```
-event | ```event <event description> /at <date time>```
-deadline | ```deadline <deadline description> /by <date time>```
-list | ```list```
-done | ```done <index>```
-delete | ```delete <index>```
-find | ```find <key phrase>```
-doneby | ```doneby <date time>```
-bye| ```bye```
+|Command | Description|
+|:------------:|:------------:|
+|todo | ```todo <todo description>```|
+|event | ```event <event description> /at <date time>```|
+|deadline | ```deadline <deadline description> /by <date time>```|
+|list | ```list```|
+|done | ```done <index>```|
+|delete | ```delete <index>```|
+|find | ```find <key phrase>```|
+|doneby | ```doneby <date time>```|
+|bye| ```bye```|
 
 ## 5. Notes
 [1] Here shows all 12 valid formats.
