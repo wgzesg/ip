@@ -156,7 +156,7 @@ public class Database {
 
     /**
      * Find tasks which contains the given keyword in its descriptions
-     * @param args Search keyword.
+     * @param args Filtering keyword that to be included in the task description.
      */
     public static void find(String args) {
         List<Task> newList;
