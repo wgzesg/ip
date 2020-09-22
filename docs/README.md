@@ -1,20 +1,33 @@
 # User Guide
 
 ## Table of content
-##### 1. [Introduction](#1.-Introduction)
-##### 2. [Quick Start](#2.-Quick-Start)
-##### 3. [Features and Commands](#3.-Features and Commands)
-###### 3.1 [Add Todo: `todo`](#-3.1-Add-Todo:-todo)
-###### 3.2 [Add Event: `event`](##3.2-Add-Event:-`event`)
-###### 3.3 [Add Deadline: `deadline`](#3.3-Add-Deadline-`deadline`)
-###### 3.4 [List All: `list`](#3.4-List-All:-`list`)
-###### 3.5 [Mark as Done: `done`](#3.5-Mark-as-Done:-`done`)
-###### 3.6 [Delete task: `delete`](#3.6-Delete-task:-`delete`)
-###### 3.7 [Find by key phrases: `find`](#3.7-Find-by-key-phrases:-`find`)
-###### 3.8 [Filter by date: `doneby`](#3.8-Filter-by date:-`doneby`)
-###### 3.9 [Exit the program: `bye`](#3.9-Exit-the-program:-`bye`)
-##### 4. [Command summary](#4.-Command-summary)
-##### 5. [Notes](#5.-Notes)
+1. [Introduction](#1-introduction)
+
+2. [Quick Start](#2-quick-start)
+
+3. [Features and Commands](#3-features-and-commands)
+
+3.1 [Add Todo: `todo`](#31-add-todo-todo)
+
+3.2 [Add Event: `event`](#32-add-event-event)
+
+3.3 [Add Deadline: `deadline`](#33-add-deadline-deadline)
+
+3.4 [List All: `list`](#34-list-all-list)
+
+3.5 [Mark as Done: `done`](#35-mark-as-done-done)
+
+3.6 [Delete task: `delete`](#36-delete-task-delete)
+
+3.7 [Find by key phrases: `find`](#37-find-by-key-phrases-find)
+
+3.8 [Filter by date: `doneby`](#38-filter-by-date-doneby)
+
+3.9 [Exit the program: `bye`](#39-exit-the-program-bye)
+
+4. [Command summary](#4-command-summary)
+
+5. [Notes](#5-notes)
 
 ## 1. Introduction
 Duke is an todo list management application. It is designed
