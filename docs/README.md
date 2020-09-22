@@ -220,7 +220,7 @@ Bye. Hope to see you again soon!
 ## 4. Command Summary
 
 |Command | Description|
-|:------------:|:------------:|
+|:------------:|:------------|
 |todo | ```todo <todo description>```|
 |event | ```event <event description> /at <date time>```|
 |deadline | ```deadline <deadline description> /by <date time>```|
