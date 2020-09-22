@@ -218,6 +218,7 @@ Bye. Hope to see you again soon!
 ```
 
 ## 4. Command Summary
+
 |Command | Description|
 |:------------:|:------------:|
 |todo | ```todo <todo description>```|
