@@ -2,7 +2,7 @@ package duke.commands;
 
 import duke.storage.Database;
 
-public class Delete extends Command{
+public class Delete extends Command {
 
     @Override
     public int execute() {

@@ -12,11 +12,16 @@ public class Duke {
 
     private static final CommandLib commandLib = new CommandLib();
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * Driving funtion.
+     * @param args null
+     */
+    public static void main(String[] args) {
         try {
             Database.initialise();
         } catch (IOException e) {
-            System.out.println("We cannot create a file for local storage. You may not be able to save your changes.");
+            System.out.println("We cannot create a file for local storage. " +
+                    "You may not be able to save your changes.");
         }
         printOpening();
         Scanner in = new Scanner(System.in);
@@ -24,7 +29,11 @@ public class Duke {
         while (true) {
             String command = in.nextLine();
             int result = processCommand(command);
-            Database.writeToStorage();
+            try {
+                Database.writeToStorage();
+            } catch (IOException e) {
+                System.out.println("Unable to save the changes due to unknown reasons.");
+            }
             if (result == -1) {
                 break;
             }

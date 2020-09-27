@@ -9,7 +9,7 @@ public class CommandLib {
     private final HashMap<String, Command> commandMap = new HashMap<>();
 
     /**
-     * On initialisation, the CommandLib is initilised with all possible commands
+     * On initialisation, the CommandLib is initilised with all possible commands.
      */
     public CommandLib() {
         // Initialise the map with all possible duke.commands
@@ -28,9 +28,9 @@ public class CommandLib {
         Delete delete = new Delete();
         this.register(Constants.DELETE_CMD, delete);
         Find find = new Find();
-        this.register(Constants.FIND_CMD , find);
+        this.register(Constants.FIND_CMD, find);
         DoneBy doneBy = new DoneBy();
-        this.register(Constants.DONEBY_CMD , doneBy);
+        this.register(Constants.DONEBY_CMD, doneBy);
     }
 
     public void register(String commandName, Command command) {
@@ -38,7 +38,7 @@ public class CommandLib {
     }
 
     /**
-     * Execute the command by parsing the command from the arguments
+     * Execute the command by parsing the command from the arguments.
      * @param cmd The user input
      * @return 0 if program continues; -1 if program terminates(e.g. Bye command)
      */
@@ -52,7 +52,7 @@ public class CommandLib {
         } catch (NullPointerException e) {
             System.out.println("Oops, the command is not recognised!");
             return 0;
-        } catch (ArrayIndexOutOfBoundsException e) {}
+        } catch (ArrayIndexOutOfBoundsException e) { }
 
         int result = 0;
         try {

@@ -2,7 +2,7 @@ package duke.commands;
 
 import duke.storage.Database;
 
-public class Find extends Command{
+public class Find extends Command {
 
     @Override
     public int execute() {

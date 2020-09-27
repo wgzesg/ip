@@ -21,27 +21,33 @@ import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static duke.core.Constants.FILEPATH;
 
+/**
+ * This class holds the data loaded during runtime and read and writes to the local storage.
+ */
 public class Database {
     private static ArrayList<Task> taskList = new ArrayList<>();
     private static Gson gson;
 
     /**
-     * Initilise the database with locally stored data.
+     * Initialise the database with locally stored data.
      * If the local file is not found. It creates the relevant file and folder.
      * @throws IOException If director or file cannot be created.
      */
     public static void initialise() throws IOException {
         System.out.println("Trying to load user data...");
-        RuntimeTypeAdapterFactory<Task> taskAdapterFactory = RuntimeTypeAdapterFactory.of(Task.class, "type", true)
+        RuntimeTypeAdapterFactory<Task> taskAdapterFactory = RuntimeTypeAdapterFactory
+                .of(Task.class, "type", true)
                 .registerSubtype(ToDo.class, "Todo")
                 .registerSubtype(Deadline.class, "Deadline")
                 .registerSubtype(Event.class, "Event");
-        gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(taskAdapterFactory).create();
+        gson = new GsonBuilder().setPrettyPrinting()
+                .registerTypeAdapterFactory(taskAdapterFactory).create();
 
         try {
             readFileContents();
@@ -71,7 +77,7 @@ public class Database {
     }
 
     /**
-     * Mark a task as done
+     * Mark a task as done.
      * @param arg index of the task to be labelled as done
      */
     public static void markDone(String arg) {
@@ -82,14 +88,14 @@ public class Database {
     }
 
     /**
-     * List all the tasks in the tasklist
+     * List all the tasks in the task list.
      */
     public static void listAll() {
         printTaskList(taskList);
     }
 
     /**
-     * Add a todo task to taskList
+     * Add a todo task to taskList.
      * @param args The task description of the event
      */
     public static void addToDo(String args) {
@@ -103,30 +109,33 @@ public class Database {
     }
 
     /**
-     * Add a deadline task to taskList
+     * Add a deadline task to taskList.
      * @param args The task description and the time of the deadline
      */
     public static void addDeadline(String args) {
         String[] argumentParts = args.split(Constants.BY_PARSER);
 
-        if (argumentParts.length < 2 || argumentParts[Constants.DESCRIPTION].isBlank() || argumentParts[Constants.TIME].isBlank()) {
+        if (argumentParts.length < 2 || argumentParts[Constants.DESCRIPTION].isBlank() ||
+                argumentParts[Constants.TIME].isBlank()) {
             throw new NullArgumentException(
                     "☹ OOPS!!! Not provided sufficient arguments to create an deadline.");
         }
 
-        Task ddl = new Deadline(argumentParts[Constants.DESCRIPTION], argumentParts[Constants.TIME]);
+        Task ddl = new Deadline(argumentParts[Constants.DESCRIPTION],
+                argumentParts[Constants.TIME]);
         taskList.add(ddl);
         addedToListResponse(ddl);
     }
 
     /**
-     * Add an event task to taskList
+     * Add an event task to taskList.
      * @param args The task description and the time of the event
      */
     public static void addEvent(String args) {
         String[] argumentParts = args.split(Constants.AT_PARSER);
 
-        if (argumentParts.length < 2 || argumentParts[Constants.DESCRIPTION].isBlank() || argumentParts[Constants.TIME].isBlank()) {
+        if (argumentParts.length < 2 || argumentParts[Constants.DESCRIPTION].isBlank() ||
+                argumentParts[Constants.TIME].isBlank()) {
             throw new NullArgumentException(
                     "☹ OOPS!!! Not provided sufficient arguments to create an event.");
         }
@@ -137,32 +146,34 @@ public class Database {
     }
 
     /**
-     * Search for events and deadlines that occurs before a certain time
+     * Search for events and deadlines that occurs before a certain time.
      * @param args Time specified in one of the following formats
      *             "yyyyMMdd HH:mm", "yyyy-MM-dd HH:mm", "yyyy MM dd HH:mm", "yyyy/MM/dd HH:mm",
      *             "yyyyMMdd HHmm", "yyyy-MM-dd HHmm", "yyyy MM dd HHmm", "yyyy/MM/dd HHmm",
      *             "yyyy-MM-dd", "yyyy MM dd", "yyyy/MM/dd", "yyyyMMdd HH:mm"
      */
     public static void doneBy(String args) {
-        LocalDateTime date= DateParser.parseDate(args);
+        LocalDateTime date = DateParser.parseDate(args);
         List<Task> newList;
         newList = taskList.stream()
-                    .filter(t -> (t instanceof Deadline && ((Deadline) t).time != null && ((Deadline) t).time.isBefore(date))
-                        || (t instanceof Event && ((Event) t).time != null && ((Event) t).time.isBefore(date)))
-                    .sorted((Task t1, Task t2) -> t1.taskName.compareTo(t2.taskName))
+                    .filter(t -> (t instanceof Deadline && ((Deadline) t).time != null
+                            && ((Deadline) t).time.isBefore(date)
+                        || (t instanceof Event && ((Event) t).time != null
+                            && ((Event) t).time.isBefore(date))))
+                    .sorted(Comparator.comparing((Task t) -> t.taskName))
                     .collect(Collectors.toList());
         printTaskList(newList);
     }
 
     /**
-     * Find tasks which contains the given keyword in its descriptions
+     * Find tasks which contains the given keyword in its descriptions.
      * @param args Filtering keyword that to be included in the task description.
      */
     public static void find(String args) {
         List<Task> newList;
         newList = taskList.stream()
                     .filter(t -> t.taskName.contains(args))
-                    .sorted((Task t1, Task t2) -> t1.taskName.compareTo(t2.taskName))
+                    .sorted(Comparator.comparing((Task t) -> t.taskName))
                     .collect(Collectors.toList());
         printTaskList(newList);
 
@@ -177,21 +188,21 @@ public class Database {
     }
 
     /**
-     * Prints bye to handle bye command
+     * Prints bye to handle bye command.
      */
     public static void handleBye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
-     * Delete the item at the give index
+     * Delete the item at the give index.
      * @param args The index of the element to be deleted
      */
     public static void delete(String args) {
         int index;
         try {
             index = Integer.parseInt(args);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Your input is not an integer!");
             return;
         }

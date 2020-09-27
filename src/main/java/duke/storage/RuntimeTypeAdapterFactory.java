@@ -214,7 +214,8 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
         final Map<Class<?>, TypeAdapter<?>> subtypeToDelegate
                 = new LinkedHashMap<>();
         for (Map.Entry<String, Class<?>> entry : labelToSubtype.entrySet()) {
-            TypeAdapter<?> delegate = gson.getDelegateAdapter(this, TypeToken.get(entry.getValue()));
+            TypeAdapter<?> delegate = gson.getDelegateAdapter(this,
+                    TypeToken.get(entry.getValue()));
             labelToDelegate.put(entry.getKey(), delegate);
             subtypeToDelegate.put(entry.getValue(), delegate);
         }
@@ -237,7 +238,8 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
                 @SuppressWarnings("unchecked") // registration requires that subtype extends T
                 TypeAdapter<R> delegate = (TypeAdapter<R>) labelToDelegate.get(label);
                 if (delegate == null) {
-                    throw new JsonParseException("cannot deserialize " + baseType + " subtype named "
+                    throw new JsonParseException("cannot deserialize " +
+                            baseType + " subtype named "
                             + label + "; did you forget to register a subtype?");
                 }
                 return delegate.fromJsonTree(jsonElement);
