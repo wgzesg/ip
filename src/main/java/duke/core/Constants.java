@@ -1,5 +1,8 @@
 package duke.core;
 
+/**
+ * Constants used in program
+ */
 public class Constants {
     public static final String DONE_CMD = "done";
     public static final String TODO_CMD = "todo";

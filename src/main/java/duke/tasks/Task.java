@@ -2,6 +2,9 @@ package duke.tasks;
 
 import duke.core.Constants;
 
+/**
+ * Task base class
+ */
 public class Task {
     public String type;
     public String taskName;

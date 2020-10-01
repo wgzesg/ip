@@ -2,6 +2,9 @@ package duke.commands;
 
 import duke.storage.Database;
 
+/**
+ * Command MarkDone can be executed through calling this.
+ */
 public class MarkDone extends Command {
     @Override
     public int execute() {

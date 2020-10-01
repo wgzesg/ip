@@ -4,6 +4,9 @@ import duke.parser.DateParser;
 
 import java.time.LocalDateTime;
 
+/**
+ * Event task
+ */
 public class Event extends Task {
     protected String at;
     public LocalDateTime time;

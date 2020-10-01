@@ -7,6 +7,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Parse date related input to date and time
+ */
 public class DateParser {
 
     // Accepted valid forms of string that can be properly parsed

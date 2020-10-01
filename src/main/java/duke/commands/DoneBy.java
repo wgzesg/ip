@@ -2,6 +2,9 @@ package duke.commands;
 
 import duke.storage.Database;
 
+/**
+ * Command DoneBy can be executed through calling this.
+ */
 public class DoneBy extends Command {
 
     @Override
