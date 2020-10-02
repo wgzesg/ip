@@ -6,7 +6,7 @@ import duke.exceptions.NullArgumentException;
 import java.util.HashMap;
 
 /**
- * Links user input command to its handler
+ * Links user input command to its handler.
  */
 public class CommandLib {
     private final HashMap<String, Command> commandMap = new HashMap<>();

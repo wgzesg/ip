@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.storage.Database;
+import duke.storage.Storage;
 
 /**
  * Command MarkDone can be executed through calling this.
@@ -9,7 +9,7 @@ public class MarkDone extends Command {
     @Override
     public int execute() {
         try {
-            Database.markDone(args);
+            Storage.markDone(args);
             clearArgs();
         }  catch (NumberFormatException e) {
             System.out.println("The index given is not a number.");

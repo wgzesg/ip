@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.storage.Database;
+import duke.storage.Storage;
 
 /**
  * Command Find can be executed through calling this.
@@ -9,7 +9,7 @@ public class Find extends Command {
 
     @Override
     public int execute() {
-        Database.find(args);
+        Storage.find(args);
         clearArgs();
         return 0;
     }

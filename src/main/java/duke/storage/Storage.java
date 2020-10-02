@@ -30,7 +30,7 @@ import static duke.core.Constants.FILEPATH;
 /**
  * This class holds the data loaded during runtime and read and writes to the local storage.
  */
-public class Database {
+public class Storage {
     private static ArrayList<Task> taskList = new ArrayList<>();
     private static Gson gson;
 

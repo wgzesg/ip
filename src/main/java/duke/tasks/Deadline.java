@@ -5,7 +5,7 @@ import duke.parser.DateParser;
 import java.time.LocalDateTime;
 
 /**
- * Deadline task
+ * Deadline task.
  */
 public class Deadline extends Task {
     protected String by;

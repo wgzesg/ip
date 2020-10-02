@@ -17,3 +17,5 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 *.json
 /data/
+/src/main/java/duke/checkstyle-8.2-all.jar
+/src/main/java/duke/cs2030_checks.xml

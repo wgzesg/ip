@@ -1,12 +1,9 @@
 package duke.core;
 
-import duke.storage.Database;
+import duke.storage.Storage;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
-import static duke.core.Constants.FILEPATH;
 
 public class Duke {
 
@@ -18,7 +15,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         try {
-            Database.initialise();
+            Storage.initialise();
         } catch (IOException e) {
             System.out.println("We cannot create a file for local storage. " +
                     "You may not be able to save your changes.");
@@ -30,7 +27,7 @@ public class Duke {
             String command = in.nextLine();
             int result = processCommand(command);
             try {
-                Database.writeToStorage();
+                Storage.writeToStorage();
             } catch (IOException e) {
                 System.out.println("Unable to save the changes due to unknown reasons.");
             }
@@ -46,7 +43,7 @@ public class Duke {
     private static void writeToStorage() {
         System.out.println("Saving your changes...");
         try {
-            Database.writeToStorage();
+            Storage.writeToStorage();
             System.out.println("All changes are saved!");
         } catch (IOException e) {
             e.printStackTrace();

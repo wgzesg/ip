@@ -1,7 +1,7 @@
 package duke.core;
 
 /**
- * Constants used in program
+ * Constants used in program.
  */
 public class Constants {
     public static final String DONE_CMD = "done";
