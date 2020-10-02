@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.storage.Database;
+import duke.storage.Storage;
 
 /**
  * Command AddDeadline can be executed through calling this.
@@ -8,7 +8,7 @@ import duke.storage.Database;
 public class AddDeadline extends Command {
     @Override
     public int execute() {
-        Database.addDeadline(args);
+        Storage.addDeadline(args);
         clearArgs();
         return 0;
     }

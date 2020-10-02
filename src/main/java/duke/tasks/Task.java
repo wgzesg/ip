@@ -3,7 +3,7 @@ package duke.tasks;
 import duke.core.Constants;
 
 /**
- * Task base class
+ * Task base class.
  */
 public class Task {
     public String type;

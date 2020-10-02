@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.storage.Database;
+import duke.storage.Storage;
 
 
 /**
@@ -10,7 +10,7 @@ public class PrintBye extends Command {
     @Override
     public int execute() {
 
-        Database.handleBye();
+        Storage.handleBye();
 
         clearArgs();
         return -1;

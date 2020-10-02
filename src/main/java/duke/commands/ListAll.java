@@ -1,7 +1,7 @@
 package duke.commands;
 
 
-import duke.storage.Database;
+import duke.storage.Storage;
 
 /**
  * Command ListAll can be executed through calling this.
@@ -9,7 +9,7 @@ import duke.storage.Database;
 public class ListAll extends Command {
     @Override
     public int execute() {
-        Database.listAll();
+        Storage.listAll();
         clearArgs();
         return 0;
     }
